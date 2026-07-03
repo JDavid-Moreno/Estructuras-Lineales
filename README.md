@@ -40,12 +40,69 @@ Sin embargo, a la hora de ingresar o eliminar elementos es bastante lenta, ya qu
 
 ```
 list = [1,2,3,4,5]
-list.append(0)  #al hacer esto todos los elementos se mueven
+list.append(0)  # al hacer esto todos los elementos se mueven
 ```
 
-Sus ejemplos más conocidos de uso no los vamos a abordar aca, ya que estos se realizaron con anterioridad que son [Búsqueda Binaria](https://github.com/JDavid-Moreno/Dividir-y-conquistar/blob/main/Algoritmos/BinarySearch.py) o los [Algoritmos de ordenamiento de arreglos](https://github.com/JDavid-Moreno/Algoritmos-de-ordenamiento), los cuales rapidamente trantan sobre encontrar el indice de un elemento conociendo el valor de dicho elemento y los algoritmos de ordenamiento, como dice su nombre, consisten en distintas maneras de ordenar un arreglo de elementos enteros.
+Sus ejemplos más conocidos de uso no los vamos a abordar aca, ya que estos se realizaron con anterioridad que son [Búsqueda Binaria](https://github.com/JDavid-Moreno/Dividir-y-conquistar/blob/main/Algoritmos/BinarySearch.py) o los [Algoritmos de ordenamiento de arreglos](https://github.com/JDavid-Moreno/Algoritmos-de-ordenamiento), los cuales rápidamente tratan sobre encontrar el índice de un elemento conociendo el valor de dicho elemento y los algoritmos de ordenamiento, como dice su nombre, consisten en distintas maneras de ordenar un arreglo de elementos enteros.
 
 ---
 
 ## Pilas
 
+Es una estructura lineal que utiliza el principio LIFO (Last In, First Out), el cual consiste en que el último elemento que ingreso es el primer elemento es sacar o eliminar, por eso su nombre, ya que es como una pila de cosas donde el elemento de más arriba que fue el último en ponerse, es el primero que se quita. Un ejemplo sencillo para imaginar una pila será una lata de pringles, ya que la última papa que se ingresó a la lata, posteriormente será la primera papa que se saque.
+
+A diferencia de una arreglo en donde se puede ingresar un elemento en cualquier posición, en una pila para ingresar elementos, únicamente se puede hacer en un unico punto que es el tope, por lo que todas sus operaciones sé hacer en el tope que son:
+
+- Apilar: Al agregar un nuevo elemento ese elemento se apila y se pone en el tope.
+- Desa pilar: Al eliminar el elemento, este se quita de la pila y el elemento anterior se vuelve el nuevo tope.
+- Mirar: se puede mirar únicamente el elemento tope de la pila-
+
+```
+stack = []
+stack.append(10)    # unico elemento, sera el tope
+stack.append(20)    # ultimo elemento en entrar, ese es el nuevo tope
+stack.pop()         # sale el tope osea el 20, por lo que el 10 es el nuevo tope
+stack[-1]           # se ve que elemento es el tope
+```
+
+### Cuando se usa
+
+Generalmente, se usa cuando se necesita volver atrás, por ejemplos el atajo de teclado Ctrl + z es en realidad una pila por ejemplo, asi mismo, se utilizan pilas cuando hay estructuras anidadas o si algo que se abre se tiene que cerrar después como pueden ser las claves de HTML.
+
+### Ejemplos 
+
+### Paréntesis balanceados
+
+Este problema es de los más conocidos sobre pilas, consiste en que dado una serie de paréntesis, ya sea (), { } o [ ], verificar que todos los paréntesis que se abran se cierren, si no que también, estén bien cerrados o balanceados, es decir, que no se puede cerrar un paréntesis en medio de otro.
+
+Ejemplos:
+
+`({[]})` Bien balanceado
+
+`([)]` Mal balanceado
+
+Implementación:
+
+```
+def balanced_brackets(sequence):
+    stack = []
+    brackets = {")": "(", "}": "{", "]": "["}
+    for bracket in sequence:
+        if bracket in brackets.values():
+            stack.append(bracket)
+        elif bracket in brackets:
+            if len(stack) == 0:
+                return False
+            if stack[-1] != brackets[bracket]:
+                return False
+            stack.pop()
+    return len(stack) == 0
+```
+ 
+Para abordar este problema, lo más recomendable es usar un diccionario, el cual asociamos a los paréntesis con sus compañeras. Una vez hecho esto, recorremos la secuencia, si encontramos un paréntesis que abre (o sea un "(", "{" o "[") lo guardamos en la pila
+
+Por otro lado, en caso de encontrar uno paréntesis que cierra (o sea un ")", "}"), primero verificamos que la pila no este vacía, ya que si lo está automáticamente está desbalanceado. Posteriormente, verificamos si el tope es igual al compañero del elemento del tope, es decir, si tengo el ")", tengo que revisar que el tope de la pila este su compañero "(".
+
+Si la comparación es verdadera entonces podemos desa pilar ese elemento, y asi sucesivamente hasta finalizar, en donde la pila debe quedar vacía para ser balanceada, de otro modo, esta desbalanceada.
+
+### Validación HTML / XML
