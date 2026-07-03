@@ -105,4 +105,6 @@ Por otro lado, en caso de encontrar uno paréntesis que cierra (o sea un ")", "}
 
 Si la comparación es verdadera entonces podemos desa pilar ese elemento, y asi sucesivamente hasta finalizar, en donde la pila debe quedar vacía para ser balanceada, de otro modo, esta desbalanceada.
 
+https://github.com/user-attachments/assets/0faa28e1-1ce4-4a25-9bbd-3b9a53566cd8
+
 ### Validación HTML / XML
