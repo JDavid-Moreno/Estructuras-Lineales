@@ -18,5 +18,6 @@ def validate_xml(filename):
     return len(stack) == 0
 
 def main():
-    print(validate_xml("ejemplo.xml"))
+    filename = "ejemplo.xml"
+    print(validate_xml(filename))
 main()

@@ -109,3 +109,56 @@ https://github.com/user-attachments/assets/0faa28e1-1ce4-4a25-9bbd-3b9a53566cd8
 
 ### Validación HTML / XML
 
+Este ejemplo es un poco más "real" en el sentido que sería más util en la vida real, usa el mismo principio de los paréntesis balanceados, en XML o HTML todas las etiquetas que se abren se deben cerrar, o sea tipo:
+
+```
+<html>
+    <body>
+        <h1>Título</h1> 
+    </body>
+</html>
+```
+
+Sin embargo, en HTML existen etiquetas que nunca se cierran, y para evitar complicaciones el código está enfocado únicamente en archivos XML.
+
+```
+import re
+
+def validate_xml(filename):
+    stack = []
+    with open(filename, "r", encoding="utf-8") as file:
+        content = file.read()
+    tags = re.findall(r"</?[a-zA-Z0-9]+>", content)
+    for tag in tags:
+        if tag.startswith("</"):
+            name = tag[2:-1]
+            if not stack:
+                return False
+            if stack.pop() != name:
+                return False
+        else:
+            name = tag[1:-1]
+            stack.append(name)
+    return len(stack) == 0
+```
+
+Para este ejemplo se importó `re` (Regular Expressions) para simplificar las búsquedas, sin embargo, se puede hacer de igual manera sin este, el caso es que este busca cadenas dada cierto parámetro, para este caso primero creamos la pila y posteriormente abrimos el archivo en modo lectura ("r"), asi mismo, se lee todo el archivo y se guarda en una variable, es decir:
+
+```
+content =
+<book>
+    <title>Python</title>
+    <author>Juan</author>
+</book>
+```
+Posteriormente, se extrae o filtramos las cadenas que empiezan en < y terminen en >, sin importar que haya adentro (es por eso que se ponen que se pone `</?[a-zA-Z0-9]+>`, que significa toda letra del abecedario mayúscula o minúscula y todo número es válido siempre u cuando empiece y termine en <>).
+
+Una vez se realizan las verificaciones, para saber si está bien balanceado, donde se mira si las etiquetas de cierre tienen su compañero en el tope de la pila, para saber si avanza o ya esta mal.
+
+---
+
+## Colas
+
+
+
+
