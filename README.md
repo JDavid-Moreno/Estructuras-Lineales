@@ -108,3 +108,4 @@ Si la comparación es verdadera entonces podemos desa pilar ese elemento, y asi 
 https://github.com/user-attachments/assets/0faa28e1-1ce4-4a25-9bbd-3b9a53566cd8
 
 ### Validación HTML / XML
+
