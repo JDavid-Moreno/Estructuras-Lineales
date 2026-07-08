@@ -153,12 +153,64 @@ content =
 ```
 Posteriormente, se extrae o filtramos las cadenas que empiezan en < y terminen en >, sin importar que haya adentro (es por eso que se ponen que se pone `</?[a-zA-Z0-9]+>`, que significa toda letra del abecedario mayúscula o minúscula y todo número es válido siempre u cuando empiece y termine en <>).
 
-Una vez se realizan las verificaciones, para saber si está bien balanceado, donde se mira si las etiquetas de cierre tienen su compañero en el tope de la pila, para saber si avanza o ya esta mal.
+Una vez se realizan las verificaciones, para saber si está bien balanceado, donde se mira si las etiquetas de cierre tienen su compañero en el tope de la pila, para saber si avanza o ya está mal.
 
 ---
 
 ## Colas
 
+Las colas a diferencia de las pilas usan el principio FIFO (First In, First Out), es decir el primer elemento que entra es el primero que sale, el ejemplo más sencillo es una fila de cualquier tipo, la primera persona que llego es la primera que atienden. 
 
+Es muy parecido a un arreglo, sin embargo, este cuenta con diferencias clave en sus operaciones, ya que solo se puede eliminar el primer elemento que entro y cada que ingresa un elemento este solo se puede añadir al final de la lista.
 
+### Cuando se usa
 
+Las colas se usan habitualmente en varios sistemas como impresoras, donde las hojas se van imprimiendo en orden, atención al cliente, que va desde el primero que llego al último e incluso para eventos en videojuegos.
+
+### Subtipo: Colas de prioridad 
+
+Para este caso, lo más importante no es quien llego primero, sino que elemento tiene una prioridad mayor, el elemento con mayor prioridad será el primero en salir y en caso de que todos los elementos tengan la misma prioridad, entonces se trabajará como si fuera una cola normal.
+
+### Ejemplos
+
+### Cola de prioridad para hospital 
+
+Este es un ejemplo clásico, consite en decir cuál paciente debe ser atendido primero dependiendo su prioridad que en este caso sería que tan grave esta o que tan urgente es que lo atiendan.
+
+Para este caso baso a manejar la prioridad de la siguiente manera:
+
+```
+1 -> Emergencia crítica
+2 -> Grave
+3 -> Normal
+4 -> Leve
+```
+
+Por lo que mientras más pequeño el número, más rapido se debe atender, por otro lado, en caso de que 2 pacientes tengan la misma prioridad se atenderá al que llego primero, asi mismo, suponemos que la estructura será `(int(Prioridad), String(Nombre))`.
+
+```
+def attend_patient(hospital):
+    if len(hospital) == 0:
+        return None
+    priority = 0
+    for i in range(1, len(hospital)):
+        if hospital[i][0] < hospital[priority][0]:
+            priority = i
+    return hospital.pop(priority)
+```
+
+Aquí lo que hacemos es primero verificar que hay pacientes, en ese caso revisamos la lista de pacientes de modo que comparamos si la prioridad un paciente es mayor a la de los demás, y se retorna el paciente de mayor prioridad (que a la vez se elimina de la lista, ya que es el que se va a atender), en caso se quiera ver el orden de atencion de los clientes se puede realizar de varias maneras, en este caso, se crea otra función:
+
+```
+def service_order(hospital):
+    order = []
+    while hospital:
+        order.append(attend_patient(hospital))
+    return order
+```
+
+**NOTA:** Hay más ejemplos tanto para pilas como colas relacionadas con algoritmos de búsqueda (A*, DFS, BFS, etc), el caso es que varios de estos se desarrollan sobre estructuras no lineales como Árboles binarios o grafos, por lo que dichos ejemplos se abordaran en los respectivos repos de esos temas.
+
+---
+
+## Listas Enlazadas
