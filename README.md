@@ -214,3 +214,24 @@ def service_order(hospital):
 ---
 
 ## Listas Enlazadas
+
+Es una estructura lineal donde a diferencia de las estructuras anteriores que guarda los elementos uno al lado del otro, si no que los elementos almacenados en la memoria están enlazados entre sí a través de apuntadores, cada elemento tiene un apuntador que señala al siguiente elemento en la lista, estos elementos los llamamos **nodos**.
+
+De esta manera, la listas enlazadas tienen ventajas sobre los arreglos normales, por ejemplo, es muy sencillo agregar nuevos elementos, ya que estas crecen dinámicamente, es decir, unicameral toca crear el elemento en la memoria y el respectivo apuntador hacia el elemento, a diferencia de un arreglo normal, que este al tener tamaño fijo, debe crear otro arreglo más grande, clonar los elementos e insertar el nuevo elemento.
+
+De igual manera, para eliminar elementos es igual muy sencillo, únicamente se debe cambiar el apuntador del elemento anterior al que queremos eliminar, y redireccionarlo al elemento siguiente, de esta manera al no haber nada que lo apunte, elemento técnicamente se eliminó de la lista.
+
+Sin embargo, asi como tiene ventajas, tiene desventajas, por ejemplo, al no contar con índices como los arreglos normales, para ver el elemento en una posición x, debemos recorrer toda la lista para ver el valor de dicho elemento, a diferencia de un arreglo convencional, que con solo saber su índice podemos conocer su valor sin recorrer la lista.
+
+### Tipos
+
+Existen 3 tipos de listas enlazadas:
+
+1. **Lista enlazada**: la base y la que ya se explicó, cada nodo apunta al siguiente.
+![ListaEnlazada.jpeg](Recursos/Listas%20Enlazadas/ListaEnlazada.jpeg)
+2. **Lista doblemente enlazada**: Cada nodo apunta al siguiente elemento y al anterior elemento, por lo que permite recorrer en ambas direcciones.
+![Lista-DoblementeEnlazada.jpeg](Recursos/Listas%20Enlazadas/Lista-DoblementeEnlazada.jpeg)
+3. **Lista circular**: es igual a una lista enlazada con la diferencia que el último elemento apunta al primer elemento, lo que lo hace cíclico al recorrer la lista
+![ListaCircular.jpeg](Recursos/Listas%20Enlazadas/ListaCircular.jpeg)
+
+
