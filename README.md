@@ -234,4 +234,86 @@ Existen 3 tipos de listas enlazadas:
 3. **Lista circular**: es igual a una lista enlazada con la diferencia que el último elemento apunta al primer elemento, lo que lo hace cíclico al recorrer la lista
 ![ListaCircular.jpeg](Recursos/Listas%20Enlazadas/ListaCircular.jpeg)
 
+### Como se crea
+
+A diferencia de las listas convencionales, las listas enlazadas se crean de manera distinta, ya que debemos definir la estructura de los nodos, y la mejor forma de hacerlo es con una clase. Ya que cada nodo debe guardar 2 cosas: Un valor o dato y un puntero al siguiente nodo.
+
+```
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+```
+Esto nos permite guardar el valor y apuntar al siguiente (que todavía no apunta a nadie). Ahora para la lista enlazada necesitamos otra clase la cual guardaremos su funcionamiento y operaciones, por lo que vamos paso por paso empezando por su creación y "constructor".
+
+```
+class LinkedList:
+    def __init__(self):
+        self.head = None
+```
+En este caso, `self.head` representa al primer nodo de la lista, si este es **None**, significa que la lista está vacía. Por lo que con el molde, podemos crear sus operaciones.
+
+**AGREGAR**
+
+```
+    def append(self, data):
+        node = Node(data)
+        if self.head is None:
+            self.head = node
+            return
+        current = self.head
+
+        while current.next:
+            current = current.next
+        current.next = node
+```
+Para agregar un nuevo elemento, primero creamos un nuevo nodo con el valor dado, y verificamos si la lista está vacía, en ese caso, ese elemento se vuelve la cabeza. Por otro lado, si no, recorre la lista hasta llegar al último nodo y conecta ese nodo al nuevo nodo.
+
+**BUSCAR**
+
+```
+    def search(self, value):
+        current = self.head
+
+        while current:
+            if current.data == value:
+                return True
+            current = current.next
+        return False
+```
+Recorre nodo por nodo comparando el valor de ese nodo con el valor a buscar, si lo encuentra devuelve `True` de que si está el elemento en la lista, y en caso de que no lo encuentre devuelve `False`.
+
+**ELIMINAR**
+
+```
+    def delete(self, value):
+        if self.head is None:
+            return
+
+        if self.head.data == value:
+            self.head = self.head.next
+            return
+
+        current = self.head
+        while current.next:
+            if current.next.data == value:
+                current.next = current.next.next
+                return
+            current = current.next
+```
+Antes de recorrer la lista verificamos si el elemento que queremos eliminar está en la cabeza, en ese caso, únicamente movemos él `self.head` al siguiente nodo. Por otro lado, si no es la cabeza, recorremos la lista buscando el nodo anterior al que se quiere eliminar, ahi lo que hacemos es redireccionar el apuntador al elemento siguiente al que queremos eliminar, o sea el siguiente del siguiente.
+
+Finalmente, si queremos mostrar o imprimir la lista podemos crear otro método:
+
+```
+    def display(self):
+        current = self.head
+        while current:
+            print(current.data)
+            current = current.next
+        print("None")
+```
+Para este únicamente se recorre la lista imprimiendo el valor de cada nodo hasta llegar al final hasta llegar a `None`.
+
+### Operaciones adicionales 
 
