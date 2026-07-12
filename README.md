@@ -493,3 +493,22 @@ Al igual que un arreglo normal, una lista enlazada se puede ordenar usando los m
 
 Para resumir, bubble sort consiste en ir comparando elementos de vecinos y llevando el más grande a la derecha, asi sucesivamente hasta llevar al elemento más grande a la última posicion, y asi sucesivamente con todos los elementos hasta ordenar la lista, para una explicación más detallada se puede encontrar [Aquí](https://github.com/JDavid-Moreno/Algoritmos-de-ordenamiento).
 
+---
+
+## Material adicional
+
+[![Estructuras lineales](https://img.youtube.com/vi/Df-sgxGzyTg/0.jpg)](https://www.youtube.com/watch?v=Df-sgxGzyTg&t=2s)
+
+[![Arreglos](https://img.youtube.com/vi/oMoaJ_kX63A/0.jpg)](https://www.youtube.com/watch?v=oMoaJ_kX63A&t=18s)
+
+[![Pilas y colas](https://img.youtube.com/vi/x8pLMgtRXY0/0.jpg)](https://www.youtube.com/watch?v=x8pLMgtRXY0)
+
+[![Listas enlazadas](https://img.youtube.com/vi/qk67wS7WYxo/0.jpg)](https://www.youtube.com/watch?v=qk67wS7WYxo&list=PLfBtpqIBIz7rftekZzTw1DF8gIWetK8pH&index=3)
+
+### Más material que aborda otras estructuras no lineales que posteriormente se van a abordar.
+
+[![Estructuras de datos](https://img.youtube.com/vi/cwRQHcaef5c/0.jpg)](https://www.youtube.com/watch?v=cwRQHcaef5c)
+
+[![Estructuras de datos](https://img.youtube.com/vi/9ifwAPFxpu0/0.jpg)](https://www.youtube.com/watch?v=9ifwAPFxpu0)
+
+
