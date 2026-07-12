@@ -476,3 +476,20 @@ Este es un ejercicio clásico, como dice su nombre, consiste en invertir una lis
 Aquí necesitaremos de 3 variables para ir guardando los cambios, primero guardamos cuál es el siguiente nodo normal, es decir, el que sigue en el recorrido antes de invertir, después ese siguiente nodo lo volvemos el anterior y el anterior se volverá el nodo actual. Asi podemos ir invirtiendo la lista sin perder ningún valor.
 
 ### Ordenar una lista enlazada
+
+Al igual que un arreglo normal, una lista enlazada se puede ordenar usando los mismos algoritmos de ordenamiento como: merge sort, bubble sort, selection sort, etc. Obviamente adaptado para listas ordenadas; sin embargo, se matiene la misma idea, por lo que para no repetir lo mismo que se dijo en el repo sobre [Algoritmos de ordenamiento](https://github.com/JDavid-Moreno/Algoritmos-de-ordenamiento), unicamente haremos Bubble Sort que es de los más sencillos de realizar a pesar de no ser el más eficiente, por otro lado, el mejor algoritmo para listas enlazadas es **Merge Sort**.
+
+```
+    def sort(self):
+        current = self.head
+        while current:
+            next_node = current.next
+            while next_node:
+                if current.data > next_node.data:
+                    current.data, next_node.data = next_node.data, current.data
+                next_node = next_node.next
+            current = current.next
+```
+
+Para resumir, bubble sort consiste en ir comparando elementos de vecinos y llevando el más grande a la derecha, asi sucesivamente hasta llevar al elemento más grande a la última posicion, y asi sucesivamente con todos los elementos hasta ordenar la lista, para una explicación más detallada se puede encontrar [Aquí](https://github.com/JDavid-Moreno/Algoritmos-de-ordenamiento).
+
