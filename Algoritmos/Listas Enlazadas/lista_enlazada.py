@@ -49,7 +49,6 @@ class LinkedList:
             current = current.next
         print("None")
 
-
 def main():
     array = LinkedList()
     array.append(1)

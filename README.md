@@ -313,7 +313,148 @@ Finalmente, si queremos mostrar o imprimir la lista podemos crear otro método:
             current = current.next
         print("None")
 ```
-Para este únicamente se recorre la lista imprimiendo el valor de cada nodo hasta llegar al final hasta llegar a `None`.
+Para este únicamente se recorre la lista imprimiendo el valor de cada nodo hasta llegar al final o sea hasta `None`.
 
 ### Operaciones adicionales 
+
+Se pueden crear operaciones adicionales para que sea parecida a como funcionan los arreglos.
+
+**AGREGAR UN VALOR EN CUALQUIER POSICIÓN**
+
+```
+    def append_position(self, data, position):
+        node = Node(data)
+        if position == 0:
+            node.next = self.head
+            self.head = node
+            return
+
+        current = self.head
+        cont = 0
+        while cont < position - 1 and current:
+            current = current.next
+            cont += 1
+        if current is None:
+            return
+
+        node.next = current.next
+        current.next = node
+``` 
+
+Aquí lo que hacemos es que además de pedir el valor, pedimos en que posición se desea poner ese valor o nodo, para este caso la posición será como el índice en los arreglos, de igual manera, las posiciones se manejaran igual que los índices, es decir, desde $0$ hasta $n - 1$.
+
+**OBTENER TAMAÑO**
+
+``` 
+    def size(self):
+        cont = 0
+        current = self.head
+
+        while current:
+            cont += 1
+            current = current.next
+        return cont
+```
+En este caso, utilizamos un contador donde si podemos avanzar a un siguiente nodo vamos sumando de a 1, asi hasta que el siguiente nodo sea `None`, es decir, hasta ahi llega la lista.
+
+**OBTENER ELEMENTO POR POSICIÓN**
+
+``` 
+    def get(self, position):
+        cont = 0
+        current = self.head
+
+        while current:
+            if cont == position:
+                return current.data
+            current = current.next
+            cont += 1
+
+        return None
+```
+
+Para este, de igual manera necesitamos un contador para ir contando en que posición vamos, una vez en dicha posición únicamente extraemos el valor del nodo. 
+
+**OBTENER EL VALOR DEL ÚLTIMO ELEMENTO**
+
+```
+    def last(self):
+        if self.head is None:
+            return None
+        current = self.head
+
+        while current.next:
+            current = current.next
+        return current.data
+```
+
+Muy parecido al anterior, sin embargo, como queremos obtener el último elemento, no necesitamos de un contador para saber en qué posición vamos.
+
+**ACTUALIZAR UN VALOR**
+
+```
+    def update(self, old, new):
+        current = self.head
+
+        while current:
+            if current.data == old:
+                current.data = new
+                return
+            current = current.next
+```
+
+Este se puede realizar de dos maneras, dando el valor anterior o dando la posición del nodo al que le queremos dar el nuevo valor, en este caso se hizo dando el valor anterior, donde se va recorriendo la lista hasta encontrar dicho valor y sustituirlo.
+
+**CONTAR CUANTAS VECES APARECE UN VALOR**
+
+```
+    def count(self, value):
+        total = 0
+        current = self.head
+
+        while current:
+            if current.data == value:
+                total += 1
+            current = current.next
+        return total
+```
+
+Para este, vamos recorriendo la lista y cada vez que encontremos el valor vamos sumando uno en un contador, asi sucesivamente hasta haber recorrido todo el arreglo.
+
+
+**ENCONTRAR EL VALOR MAXIMO Y MINIMO**
+
+```
+    def max(self):
+        maximum = 0
+        current = self.head
+
+        while current:
+            if maximum < current.data:
+                maximum = current.data
+            current = current.next
+        return maximum
+
+    def min(self):
+        current = self.head
+        minimum = current.data
+
+        while current:
+            if minimum > current.data:
+                minimum = current.data
+            current = current.next
+        return minimum
+```
+
+Ambos funcionan de la misma manera, definimos su variable y vamos recorriendo la lista, comparando cada valor de los nodos para encontrar si es más pequeño o grande dependiendo de que necesitemos.
+
+**LIMPIAR LA LISTA**
+
+```
+    def clear(self):
+        self.head = None
+```
+Este es muy importante y a la vez sumamente facil, unicamente debemos volver la cabeza nula, de esta manera se eliminan todos los nodos siguientes.
+
+### Invertir la lista
 
