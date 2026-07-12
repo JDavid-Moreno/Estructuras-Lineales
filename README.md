@@ -456,5 +456,23 @@ Ambos funcionan de la misma manera, definimos su variable y vamos recorriendo la
 ```
 Este es muy importante y a la vez sumamente facil, unicamente debemos volver la cabeza nula, de esta manera se eliminan todos los nodos siguientes.
 
-### Invertir la lista
+### Invertir una lista enlazada
 
+Este es un ejercicio clásico, como dice su nombre, consiste en invertir una lista enlazada, a diferencia de un arreglo normal que se hace con mucha facilidad, aquí al no poseer índices, debemos invertir los apuntadores.
+
+```
+    def reverse(self):
+        previous = None
+        current = self.head
+        while current:
+            next_node = current.next
+            current.next = previous
+            previous = current
+            current = next_node
+
+        self.head = previous
+```
+
+Aquí necesitaremos de 3 variables para ir guardando los cambios, primero guardamos cuál es el siguiente nodo normal, es decir, el que sigue en el recorrido antes de invertir, después ese siguiente nodo lo volvemos el anterior y el anterior se volverá el nodo actual. Asi podemos ir invirtiendo la lista sin perder ningún valor.
+
+### Ordenar una lista enlazada
