@@ -493,6 +493,66 @@ Al igual que un arreglo normal, una lista enlazada se puede ordenar usando los m
 
 Para resumir, bubble sort consiste en ir comparando elementos de vecinos y llevando el más grande a la derecha, asi sucesivamente hasta llevar al elemento más grande a la última posicion, y asi sucesivamente con todos los elementos hasta ordenar la lista, para una explicación más detallada se puede encontrar [Aquí](https://github.com/JDavid-Moreno/Algoritmos-de-ordenamiento).
 
+
+---
+
+### Lista doblemente enlazada
+
+Esta cambia un poco como funciona las listas enlazadas, su principal cambio es que ahora como se apunta tanto al elemento previo como al elemento siguiente, se necesitan ahora de dos apuntadores.
+
+```
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.prev = None
+```
+
+Ahora creamos el apuntador `prev` para guardar el anterior, y con la base de la lista que queda de igual manera, podemos crear las operaciones de las listas.
+
+**Agregar**
+
+```
+    def append(self, data):
+        node = Node(data)
+        if self.head is None:
+            self.head = node
+            return
+        current = self.head
+
+        while current.next:
+            current = current.next
+        current.next = node
+        node.prev = current
+```
+
+Este se hace igual al de una lista enlazada normal, con el cambio de que al final guardamos el nodo anterior para que el apuntador nuevo sepa cuál es su predecesor.
+
+**Mostrar la lista en ambas direcciones**
+
+```
+    def display_forward(self):
+        current = self.head
+        while current:
+            print(current.data)
+            current = current.next
+        print("None")
+
+    def display_backward(self):
+        current = self.head
+        while current.next:
+            current = current.next
+
+        while current:
+            print(current.data)
+            current = current.prev
+        print(None)
+```
+
+Para la función `display_forward` es exactamente igual a la que se usó previamente en la lista enlazada normal, por otro lado, `display_backward` lo que hace es que primero recorre la lista, y una vez llega al final, comienza a reotrnar la lista "al reves", mientras va avanzando con los apuntadores `prev`.
+
+Para las demás funciones no cambia en nada sustancial.
+
 ---
 
 ## Material adicional
