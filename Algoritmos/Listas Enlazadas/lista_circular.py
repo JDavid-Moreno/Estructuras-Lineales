@@ -3,7 +3,7 @@ class Node:
         self.data = data
         self.next = None
 
-class LinkedList:
+class CircularLinkedList:
     def __init__(self):
         self.head = None
 
@@ -11,20 +11,24 @@ class LinkedList:
         node = Node(data)
         if self.head is None:
             self.head = node
+            node.next = self.head
             return
         current = self.head
 
-        while current.next:
+        while current.next != self.head:
             current = current.next
         current.next = node
+        node.next = self.head
 
     def search(self, value):
         current = self.head
 
-        while current:
+        while True:
             if current.data == value:
                 return True
             current = current.next
+            if current == self.head:
+                break
         return False
 
     def delete(self, value):
@@ -36,7 +40,7 @@ class LinkedList:
             return
 
         current = self.head
-        while current.nexts:
+        while current.next != self.head:
             if current.next.data == value:
                 current.next = current.next.next
                 return
@@ -44,13 +48,15 @@ class LinkedList:
 
     def display(self):
         current = self.head
-        while current:
+        while True:
             print(current.data)
             current = current.next
-        print("None")
+            if current == self.head:
+                break
+        print("head")
 
 def main():
-    array = LinkedList()
+    array = CircularLinkedList()
     array.append(1)
     array.append(2)
     array.append(3)

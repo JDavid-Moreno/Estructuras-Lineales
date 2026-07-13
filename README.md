@@ -555,6 +555,61 @@ Para las demás funciones no cambia en nada sustancial.
 
 ---
 
+### Lista Circular
+
+Esta es muy parecida, ya que en el papel únicamente al último elemento se le debe agregar un apuntador hacia el primer elemento. Por lo que, la clase `Node` se queda tal como esta, sin embargo, para la clase `CircularLinkedList` cambian algunas funciones respecto a sus operaciones básicas.
+
+**Agregar**
+
+```
+    def append(self, data):
+        node = Node(data)
+        if self.head is None:
+            self.head = node
+            node.next = self.head
+            return
+        current = self.head
+
+        while current.next != self.head:
+            current = current.next
+        current.next = node
+        node.next = self.head
+```
+
+Para este caso, cuando agregamos el primer elemento, hacemos que este se apunte a sí mismo. Por otro lado, cuando agregamos otro nodo, este se hará igual que en una lista enlazada normal, con la diferencia de que el ciclo pare si llega a la cabeza nuevamente o si no estara en un loop infinito, asi como al definir el nuevo nodo, actualizamos el apuntador de la cabeza para que el último elemento sea el que lo apunte.
+
+**Buscar**
+
+```
+    def search(self, value):
+        current = self.head
+
+        while True:
+            if current.data == value:
+                return True
+            current = current.next
+            if current == self.head:
+                break
+        return False
+```
+
+Este también cambia su ciclo, ya que como nunca tendremos un nodo que apunte a nada, o sea `None`, el loop se vuelve infinito. Por lo que debemos modificarlo de tal manera que ahora verifique si volvimos a la cabeza de la lista nuevamente, en ese caso acabamos el lopp para decir que no lo encontramos.
+
+Asi mismo, usamos esta misma idea para la operación de **Mostrar**:
+
+```
+    def display(self):
+        current = self.head
+        while True:
+            print(current.data)
+            current = cursrent.next
+            if current == self.head:
+                break
+        print("head")
+```
+
+---
+
 ## Material adicional
 
 [![Estructuras lineales](https://img.youtube.com/vi/Df-sgxGzyTg/0.jpg)](https://www.youtube.com/watch?v=Df-sgxGzyTg&t=2s)
